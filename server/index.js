@@ -2,7 +2,20 @@ const {axios} =require('axios');
 const {json, send} = require('micro');
 const fetch = require('node-fetch');
 const {includes, lowerCase, random, sample} = require('lodash');
+const http = require('http');
 
+const hostname = '178.155.14.28';
+const port = 8000;
+
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('This is My First Nodejs App!\n');
+});
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
 
 class OpenDoorController{
     static async getOpen(){
