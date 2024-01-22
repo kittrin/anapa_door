@@ -3,13 +3,13 @@ const {json, send} = require('micro');
 const {includes, lowerCase} = require('lodash');
 const http = require('http');
 
-const hostname = '178.155.14.28';
-const port = 8600;
+const hostname = 'localhost';
+const port = 3000;
 
 const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
-    res.end('This is My First Nodejs App!\n');
+    res.end('Hello World!\n');
 });
 
 server.listen(port, hostname, () => {
