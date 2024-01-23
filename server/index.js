@@ -3,18 +3,26 @@ const {json, send} = require('micro');
 const {includes, lowerCase} = require('lodash');
 const http = require('http');
 
-// const hostname = '178.155.14.28';
-// const port = 3000;
-//
-// const server = http.createServer((req, res) => {
-//     res.statusCode = 200;
-//     res.setHeader('Content-Type', 'text/plain');
-//     res.end('Hello World!\n');
-// });
-//
-// server.listen(port, hostname, () => {
-//     console.log(`Server running at http://${hostname}:${port}/`);
-// });
+const hostname = '178.155.14.28';
+const port = 443;
+
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World!\n');
+});
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+const express = require('express')
+const PORT = process.env.PORT
+const app = express()
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
 
 class OpenDoorController{
     static async getOpen(){
@@ -131,15 +139,14 @@ module.exports = async (req, res) => {
     // Функция, которая получает данные и возвращает отформатированную цитату:
     async function setData() {
         let quote;
-        let author;
         try {
-            // Получение "сырых" данных:
-            const data = 'окей уважаемый'
+            await data()
+            quote = "Шлагбаум скоро откроется"
         } catch (err) {
             quote = 'Мысль потеряна! Попробуйте ещё раз.';
             console.error('Fail to fetch data: ' + err);
         }
         // Отформатированная цитата:
-        return `${quote}\n${author ? '— ' : ''}${author}\n${prompt}`;
+        return `${quote}`;
     }
 };
