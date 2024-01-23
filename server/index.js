@@ -3,7 +3,7 @@ const {json, send} = require('micro');
 const {includes, lowerCase} = require('lodash');
 const http = require('http');
 
-const hostname = '178.155.14.28';
+const hostname = '178.155.14.28.anapa.ru';
 const port = 443;
 
 const server = http.createServer((req, res) => {
